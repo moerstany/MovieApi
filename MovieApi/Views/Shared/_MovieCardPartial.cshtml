@@ -1,0 +1,38 @@
+﻿@model Movie
+
+
+<div class="card">
+	@if (Model.Plot == null)
+	{
+		<a asp-action="Movie" asp-controller="Home" asp-route-id="@Model.imdbID">
+		@*	<img src="@(Model.Poster=="N/A" ? "/images/post.png":@Model.Poster)" class="card-img-top" alt="..."> *@
+			<img src="@Model.Poster" onerror="event.target.src='/images/post.png'" class="card-img-top" alt="..."> 
+		</a>
+	}
+	else
+	{
+		<img src="@Model.Poster" class="card-img-top" alt="...">
+	}
+	<div class="card-body">
+		<h5 class="card-title">@Model.Title</h5>
+		<p class="card-text">@Model.Year.</p>
+
+		@if (Model.Plot == null)
+		{
+			<a asp-action="Movie" asp-controller="Home" asp-route-id="@Model.imdbID" class="btn btn-primary">Show Movie</a>
+		}
+
+	</div>
+</div>
+
+
+@*@section Scripts{
+	<script>
+		
+$('img').on('error', function () {
+    $(this).attr('src', '/images/post.png')
+    console.log("Error");
+});
+	</script>
+}
+*@

@@ -1,0 +1,35 @@
+﻿@{
+	ViewData["Title"] = "Search";
+}
+
+@model MovieApiResponse
+
+
+@if (@ViewBag.MovieTitle != null)
+{
+	<h1>Search results by title :  @ViewBag.MovieTitle </h1> 
+	<small>Total results :  @ViewBag.Result </small>
+
+	<div class="row">
+		@foreach (Movie item in @Model.Search)
+		{
+			@*<div class="card col-4">
+				<img src="@item.Poster" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title">@item.Title</h5>
+					<p class="card-text">@item.Year.</p>
+					<a asp-action="Movie" asp-controller="Home" asp-route-id="@item.imdbID"    class="btn btn-primary">Show Movie</a>
+				</div>
+			</div>*@
+			<div class="col-md-4">
+			<partial  name="_MovieCardPartial" model="item"/>
+			</div>
+		}
+
+	</div>
+}
+else
+{
+	<h1>Not results!</h1>
+}
+
